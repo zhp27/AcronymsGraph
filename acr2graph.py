@@ -127,7 +127,7 @@ def acr_grapgh(ns,nd,l):
         tx.commit()
 
 #Main code
-doc = Document('bench1_un.docx')
+doc = Document('acr.docx')
 Paras = doc.paragraphs
 #create a list of acronyms
 DictAcr=expand_abv(Paras)
