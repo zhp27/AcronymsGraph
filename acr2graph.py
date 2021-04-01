@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- codiExtentedExp: utf-8 -*-
 """
 Created on Tue Mar 30 20:50:26 2021
 
@@ -25,54 +25,54 @@ def expand_abv(Paras):
     for p in Paras:
         for run in p.runs:
             t=run.text 
-            #removing hyphens
+            #removiExtentedExp hyphens
             puncts='_-—'
             for sym in puncts:
                 t= t.replace(sym,' ')  
                 #find acrs (ABCD)
-            mo=re.findall(r'\([A-Z]*\)', t) 
-            #print(mo)
-             
+            mainObject=re.findall(r'\([A-Z]*\)', t) 
+                         
             words = t.split(' ') 
-            #Expand the acr, find Ngrams prior to (ABC)
-            if mo:                                 
-                for item in mo:                    
-                    if item.isupper():                    
+            #Expand the acr, find ngrams prior to (ABC)
+            if mainObject:                                 
+                for item in mainObject:                    
+                    if item.isupper(): #Doublecheck for acronyms be uppercase                   
                         l=len(item)-1 
                         #print(l)
-                        ng=''
+                        ExtentedExp=''
                         for i, j in enumerate(words):                        
                             if j == item:
-                                artno=0
+                                artno=0 #if there is an Article in the phrase
                                 for k in range(1,l):
                                     w=words[i-k]
                                     if w in arts:
                                         artno+=1
-                                    ng+=w
-                                    ng+=' '
-                                #of the ,... management
+                                    ExtentedExp+=w
+                                    ExtentedExp+=' '
+                                #of the ,... management. 
+                                #expand the phrase consideriExtentedExp articles 
                                 if artno>0:
                                     for c in range(artno):                                    
                                         w=words[i-(k+c+1)]
-                                        ng+=w
-                                        ng+=' '
+                                        ExtentedExp+=w
+                                        ExtentedExp+=' '
                                 #reverse the phrase
-                                sng=ng.split()        
-                                l1= len(sng) 
-                                rng=''
+                                sExtentedExp=ExtentedExp.split()        
+                                l1= len(sExtentedExp) 
+                                rExtentedExp=''
                                 for i in reversed(range(l1)):
-                                    rng+=sng[i]
-                                    rng+=' '                               
+                                    rExtentedExp+=sExtentedExp[i]
+                                    rExtentedExp+=' '                               
                                     #add to dictionary
                                 
-                                acr[item]=rng
+                                acr[item]=rExtentedExp
     
     facr={}
     #print(json.dumps(acr, indent = 4))
-    for item, rng in acr.items():
+    for item, rExtentedExp in acr.items():
         i=item.replace('(','')
         i=i.replace(')','')
-        facr[i]=rng
+        facr[i]=rExtentedExp
         
     #print(json.dumps(facr, indent = 4))
     return facr
@@ -100,10 +100,10 @@ def acrs(text,da):
 #remove the (ACR) to prevent duplicate words
 def remove_first(Text):
     
-    mo=re.findall(r'\([A-Z]*\)', Text) 
+    mainObject=re.findall(r'\([A-Z]*\)', Text) 
         #print(mo)
-    if mo:
-        for item in mo: 
+    if mainObject:
+        for item in mainObject: 
             Text=Text.replace(item,'')
     
     return(Text)
@@ -139,7 +139,7 @@ for p in Paras:
         T=remove_first(T)
         #resolve and expand all the Acronyms
         [T,dic]=acrs(T,DictAcr)   
-
+#start node, End node creation
 LAcr=len(dic)
 ns=[]
 nd=[]
