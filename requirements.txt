@@ -3,8 +3,7 @@ en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_
 json5==0.9.5
 jsonschema==3.2.0
 lxml== 2.3.2
-nlp @ file:///home/conda/feedstock_root/build_artifacts/nlp_1596736864032/work
-nltk @ file:///tmp/build/80754af9/nltk_1592496090529/work
+nlp==0.4.0
+nltk==3.5
 py2neo==4.2.0
-regex @ file:///C:/ci/regex_1593419644658/work
 regex==2020.7.14
